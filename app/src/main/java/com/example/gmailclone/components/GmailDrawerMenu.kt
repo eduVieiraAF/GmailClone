@@ -1,7 +1,7 @@
 package com.example.gmailclone.components
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -16,12 +16,12 @@ import com.example.gmailclone.DrawerMenuData
 @Composable
 fun GmailDrawerMenu() {
     val menuList = listOf(
-        DrawerMenuData.Divider,
+        //DrawerMenuData.Divider,
         DrawerMenuData.AllInboxes,
         DrawerMenuData.Primary,
         DrawerMenuData.Social,
-        DrawerMenuData.Divider,
-        DrawerMenuData.Header1,
+        //DrawerMenuData.Divider,
+        //DrawerMenuData.Header1,
         DrawerMenuData.Starred,
         DrawerMenuData.Snoozed,
         DrawerMenuData.Important,
@@ -32,9 +32,9 @@ fun GmailDrawerMenu() {
         DrawerMenuData.AllMail,
         DrawerMenuData.Spam,
         DrawerMenuData.Trash,
-        DrawerMenuData.Header2,
+        //DrawerMenuData.Header2,
         DrawerMenuData.Calendar,
-        DrawerMenuData.Divider,
+        //DrawerMenuData.Divider,
         DrawerMenuData.Help,
         DrawerMenuData.Settings
     )
@@ -48,10 +48,31 @@ fun GmailDrawerMenu() {
             fontSize = 22.sp,
             fontWeight = FontWeight.Bold
         )
+
+        menuList.forEach { MailDrawerItem(item = it) }
     }
 }
 
-@Preview
+@Composable
+fun MailDrawerItem(item: DrawerMenuData) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(50.dp)
+            .padding(top = 10.dp)
+    ) {
+        Image(
+            imageVector = item.icon!!,
+            contentDescription = item.title!!,
+            modifier = Modifier
+                .weight(0.5f)
+        )
+
+        Text(text = item.title, modifier = Modifier.weight(2.0f))
+    }
+}
+
+@Preview(showBackground = true)
 @Composable
 fun DefaultView() {
     GmailDrawerMenu()

@@ -13,7 +13,7 @@ sealed class DrawerMenuData(
     object AllInboxes : DrawerMenuData(icon = Icons.Outlined.AllInbox, title = "All inboxes")
     object Primary : DrawerMenuData(icon = Icons.Outlined.Inbox, title = "Primary")
     object Social : DrawerMenuData(icon = Icons.Outlined.Person, title = "Social")
-    object Starred : DrawerMenuData(icon = Icons.Outlined.Stars, title = "Starred")
+    object Starred : DrawerMenuData(icon = Icons.Outlined.Star, title = "Starred")
     object Snoozed : DrawerMenuData(icon = Icons.Outlined.Snooze, title = "Snoozed")
     object Important : DrawerMenuData(icon = Icons.Outlined.Info, title = "Important")
     object Sent : DrawerMenuData(icon = Icons.Outlined.Send, title = "Sent")
