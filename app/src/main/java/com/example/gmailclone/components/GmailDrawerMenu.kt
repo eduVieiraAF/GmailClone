@@ -9,14 +9,12 @@ import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.gmailclone.DrawerMenuData
 import com.example.gmailclone.ui.theme.Red200
-import com.example.gmailclone.ui.theme.Red500
 
 @Composable
 fun GmailDrawerMenu(scrollState: ScrollState) {
@@ -42,7 +40,9 @@ fun GmailDrawerMenu(scrollState: ScrollState) {
         DrawerMenuData.Calendar,
         DrawerMenuData.Divider,
         DrawerMenuData.Help,
-        DrawerMenuData.Settings
+        DrawerMenuData.Settings,
+        DrawerMenuData.Divider,
+        DrawerMenuData.Edu
     )
 
     Column(Modifier.verticalScroll(scrollState)) {
@@ -55,9 +55,9 @@ fun GmailDrawerMenu(scrollState: ScrollState) {
             fontWeight = FontWeight.SemiBold
         )
 
-        menuList.forEach { item ->
+        menuList.forEach {
             when {
-                item.isDivider -> {
+                it.isDivider -> {
                     Divider(
                         modifier = Modifier.padding(
                             top = 12.dp,
@@ -66,9 +66,9 @@ fun GmailDrawerMenu(scrollState: ScrollState) {
                     )
                 }
 
-                item.isHeader -> {
+                it.isHeader -> {
                     Text(
-                        text = item.title!!,
+                        text = it.title!!,
                         fontWeight = FontWeight.Light,
                         modifier = Modifier.padding(
                             top = 12.dp,
@@ -78,7 +78,9 @@ fun GmailDrawerMenu(scrollState: ScrollState) {
                     )
                 }
 
-                else -> { MailDrawerItem(item = item) }
+                else -> {
+                    MailDrawerItem(item = it)
+                }
             }
         }
     }

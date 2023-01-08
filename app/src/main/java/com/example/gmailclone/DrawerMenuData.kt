@@ -29,4 +29,5 @@ sealed class DrawerMenuData(
     object Divider : DrawerMenuData(isDivider = true)
     object Header1 : DrawerMenuData(isHeader = true, title = "All labels")
     object Header2 : DrawerMenuData(isHeader = true, title = "Apps")
+    object Edu : DrawerMenuData(icon = Icons.Outlined.Android, title = "Made by Edu®")
 }
