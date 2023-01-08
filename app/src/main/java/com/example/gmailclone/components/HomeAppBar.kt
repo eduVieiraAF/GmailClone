@@ -1,6 +1,7 @@
 package com.example.gmailclone.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -10,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -25,12 +27,14 @@ fun HomeAppBar(scaffoldState: ScaffoldState, scope: CoroutineScope) {
     Box(
         modifier = Modifier
             .padding(10.dp)
+
     ) {
         Card(
             shape = RoundedCornerShape(20.dp),
             elevation = 4.dp,
             modifier = Modifier
                 .requiredHeight(50.dp)
+                .border(width = 1.dp, color = Color.LightGray, shape = RoundedCornerShape(20.dp))
         ) {
             Row(
                 verticalAlignment = Alignment.CenterVertically,
@@ -47,7 +51,7 @@ fun HomeAppBar(scaffoldState: ScaffoldState, scope: CoroutineScope) {
                 }
 
                 Text(
-                    textAlign = TextAlign.Center,
+                    textAlign = TextAlign.Justify,
                     text = "Search in emails",
                     modifier = Modifier
                         .weight(2.0f)
@@ -59,6 +63,7 @@ fun HomeAppBar(scaffoldState: ScaffoldState, scope: CoroutineScope) {
                     contentDescription = "email icon",
                     modifier = Modifier
                         .size(30.dp)
+                        .padding(end = 8.dp)
                     //.clip(CircleShape)
                 )
             }

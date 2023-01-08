@@ -1,7 +1,11 @@
 package com.example.gmailclone.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -11,17 +15,19 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.gmailclone.DrawerMenuData
-
+import com.example.gmailclone.ui.theme.Red200
+import com.example.gmailclone.ui.theme.Red500
 
 @Composable
-fun GmailDrawerMenu() {
+fun GmailDrawerMenu(scrollState: ScrollState) {
     val menuList = listOf(
-        //DrawerMenuData.Divider,
+        DrawerMenuData.Divider,
         DrawerMenuData.AllInboxes,
+        DrawerMenuData.Divider,
         DrawerMenuData.Primary,
         DrawerMenuData.Social,
-        //DrawerMenuData.Divider,
-        //DrawerMenuData.Header1,
+        DrawerMenuData.Divider,
+        DrawerMenuData.Header1,
         DrawerMenuData.Starred,
         DrawerMenuData.Snoozed,
         DrawerMenuData.Important,
@@ -32,24 +38,49 @@ fun GmailDrawerMenu() {
         DrawerMenuData.AllMail,
         DrawerMenuData.Spam,
         DrawerMenuData.Trash,
-        //DrawerMenuData.Header2,
+        DrawerMenuData.Header2,
         DrawerMenuData.Calendar,
-        //DrawerMenuData.Divider,
+        DrawerMenuData.Divider,
         DrawerMenuData.Help,
         DrawerMenuData.Settings
     )
 
-    Column {
+    Column(Modifier.verticalScroll(scrollState)) {
         Text(
             text = "Gmail",
-            color = Color.Red,
+            color = Red200,
             modifier = Modifier
                 .padding(start = 20.dp, top = 20.dp, bottom = 10.dp),
             fontSize = 22.sp,
-            fontWeight = FontWeight.Bold
+            fontWeight = FontWeight.SemiBold
         )
 
-        menuList.forEach { MailDrawerItem(item = it) }
+        menuList.forEach { item ->
+            when {
+                item.isDivider -> {
+                    Divider(
+                        modifier = Modifier.padding(
+                            top = 12.dp,
+                            bottom = 12.dp
+                        )
+                    )
+                }
+
+                item.isHeader -> {
+                    Text(
+                        text = item.title!!,
+                        fontWeight = FontWeight.Light,
+                        modifier = Modifier.padding(
+                            top = 12.dp,
+                            bottom = 12.dp,
+                            start = 20.dp
+                        )
+                    )
+                }
+
+                else -> { MailDrawerItem(item = item) }
+            }
+        }
     }
 }
 
@@ -75,5 +106,6 @@ fun MailDrawerItem(item: DrawerMenuData) {
 @Preview(showBackground = true)
 @Composable
 fun DefaultView() {
-    GmailDrawerMenu()
+    val scrollState = rememberScrollState()
+    GmailDrawerMenu(scrollState)
 }
