@@ -2,12 +2,14 @@ package com.example.gmailclone.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -22,7 +24,10 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @Composable
-fun HomeAppBar(scaffoldState: ScaffoldState, scope: CoroutineScope) {
+fun HomeAppBar(
+    scaffoldState: ScaffoldState,
+    scope: CoroutineScope,
+    openDialog: MutableState<Boolean>) {
     Box(
         modifier = Modifier
             .padding(10.dp)
@@ -63,17 +68,13 @@ fun HomeAppBar(scaffoldState: ScaffoldState, scope: CoroutineScope) {
                     modifier = Modifier
                         .size(30.dp)
                         .padding(end = 8.dp)
-                    //.clip(CircleShape)
+                        .clickable {
+                            openDialog.value = true
+                        }
                 )
+
+                if (openDialog.value) AccountsDialog(openDialog)
             }
         }
     }
-}
-
-@Preview
-@Composable
-fun DefaultPreview() {
-    val scaffoldState = rememberScaffoldState()
-    val coroutineScope = rememberCoroutineScope()
-    GmailCloneTheme { HomeAppBar(scaffoldState = scaffoldState, scope = coroutineScope) }
 }
