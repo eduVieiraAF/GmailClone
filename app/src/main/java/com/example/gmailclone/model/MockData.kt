@@ -1,5 +1,7 @@
 package com.example.gmailclone.model
 
+import com.example.gmailclone.R
+
 val mailList = listOf(
     MailData(
         mailID = 1,
@@ -71,4 +73,11 @@ val mailList = listOf(
         body = "We have an opening that suits your profile kindly check it out and indicate your interest",
         timeStamp = "20:10"
     )
+)
+
+val accountList = listOf(
+    Account(icon = R.drawable.gmail, userName = "Edu", email = "edu@gmail.com", unreadEmails = 70),
+    Account(userName = "Edu #2", email = "edu2@gmail.com", unreadEmails = 34),
+    Account(userName = "Edu #3", email = "edu3@gmail.com", unreadEmails = 25),
+    Account( icon = R.drawable.gmail, userName = "Support", email = "support@gmail.com", unreadEmails = 61),
 )
